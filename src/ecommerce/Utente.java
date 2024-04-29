@@ -1,6 +1,6 @@
 package ecommerce;
 
-import java.util.List;
+import java.util.*;
 
 public class Utente {
 	
@@ -9,10 +9,10 @@ public class Utente {
 	private String  nome;
 	
 	private String cognome;
-	private List<TelefonoUtente> numeriTelefono;
-	private List<IndirizzoUtente> indirizzo;
+	private List<TelefonoUtente> numeriTelefono=new ArrayList<TelefonoUtente>();
+	private List<IndirizzoUtente> indirizzo= new ArrayList<IndirizzoUtente>();
 	private RUOLO ruolo;
-	
+	private List<Ordini> ordini = new ArrayList<Ordini>();
 	
 	
 	
@@ -52,4 +52,21 @@ public class Utente {
 	public void setIndirizzoUtente(IndirizzoUtente indirizzo) {
 		this.indirizzo.add(indirizzo);
 	}
+	public long getIdUtente() {
+		return idUtente;
+	}
+	public void setIdUtente(long idUtente) {
+		this.idUtente = idUtente;
+	}
+	public List<IndirizzoUtente> getIndirizzo() {
+		return indirizzo;
+	}
+	public List<Ordini> getOrdini() {
+		return ordini;
+	}
+	public void setOrdini(List<Ordini> ordini) {
+		this.ordini = ordini;
+	}
+	
+	
 }

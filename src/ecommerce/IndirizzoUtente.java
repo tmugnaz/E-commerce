@@ -22,5 +22,38 @@ public class IndirizzoUtente {
 			this.indirizzotype= INDIRIZZOTYPE.SPEDIZIONE;
 		}
 	}
+
+	public String getIndirizzoVia() {
+		return indirizzoVia;
+	}
+
+	public void setIndirizzoVia(String indirizzoVia) {
+		this.indirizzoVia = indirizzoVia;
+	}
+
+	public String getCAP() {
+		return CAP;
+	}
+
+	public void setCAP(String cAP) {
+		CAP = cAP;
+	}
+
+	public INDIRIZZOTYPE getIndirizzotype() {
+		return indirizzotype;
+	}
+
+	public void setIndirizzotype(INDIRIZZOTYPE indirizzotype) {
+		this.indirizzotype = indirizzotype;
+	}
+
+	public Utente getUtente() {
+		return utente;
+	}
+
+	public void setUtente(Utente utente) {
+		this.utente = utente;
+	}
+	
 	
 }
