@@ -2,7 +2,7 @@ package ecommerce;
 
 public class TelefonoUtente {
 	
-	private Long Id;
+	
 	private Utente utente;
 	private String numeroTelefono;
 	

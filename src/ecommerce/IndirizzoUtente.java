@@ -15,12 +15,17 @@ public class IndirizzoUtente {
 		
 	}
 	
+	
+	public IndirizzoUtente() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public void cambiaIndirizzoType() {
 		if (this.indirizzotype == INDIRIZZOTYPE.SPEDIZIONE) {
 			this.indirizzotype = INDIRIZZOTYPE.FATTURAZIONE;
-		}else {
-			this.indirizzotype= INDIRIZZOTYPE.SPEDIZIONE;
 		}
+			
 	}
 
 	public String getIndirizzoVia() {
@@ -53,6 +58,11 @@ public class IndirizzoUtente {
 
 	public void setUtente(Utente utente) {
 		this.utente = utente;
+	}
+
+
+	public void info() {
+		System.out.println("via: "+this.getIndirizzoVia()+" CAP"+this.getCAP()+" tipologia:"+this.getIndirizzotype().name());
 	}
 	
 	
