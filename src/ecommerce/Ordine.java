@@ -86,6 +86,19 @@ public class Ordine {
 		}
 	}
 
+
+	public void creaRigaOrdine (Articolo articolo, int quantità, int iva, int sconto) {
+		RigaOrdine rg = new RigaOrdine (this,articolo,quantità,iva,sconto);
+		addRigaOrdine(rg);
+		
+	}
+	
+	
+	public void addRigaOrdine( RigaOrdine rg ) {
+		this.righeOrdine.add(rg);
+	}
+	
+	// METODI SCANNER PER INTERFACCIA UTENTE, SCELTA DI METODO DI PAGAMENTO
 	public void sceltaModPagScanner(Scanner scanner) {
 		int cont = 0;
 			System.out.println("Modalità pagamento correnti");
@@ -128,17 +141,6 @@ public class Ordine {
 			}
 
 		}
-	public void creaRigaOrdine (Articolo articolo, int quantità, int iva, int sconto) {
-		RigaOrdine rg = new RigaOrdine (this,articolo,quantità,iva,sconto);
-		addRigaOrdine(rg);
-		
-	}
-	
-	
-	public void addRigaOrdine( RigaOrdine rg ) {
-		this.righeOrdine.add(rg);
-	}
-	
 	
 	
 	

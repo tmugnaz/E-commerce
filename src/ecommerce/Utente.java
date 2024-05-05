@@ -14,15 +14,7 @@ public class Utente {
 	private RUOLO ruolo;
 	private List<Ordine> ordini = new ArrayList<Ordine>();
 
-	public Utente(String nome, String cognome, Scanner scanner) {
-		super();
-		this.nome = nome;
-		this.cognome=cognome;
-		this.ruolo = RUOLO.AMMINISTRATORE_DI_SISTEMA;
-		System.out.println("aggiungi un numero di telefono");
-		addTelefonoUtenteScanner(scanner);
-		System.out.println("non scordarti di inserire un indirizzo tramite .addIndirizzi !!!");
-	}
+	
 	public Utente(String nome,String cognome) {
 		this.nome = nome;
 		this.cognome=cognome;
@@ -109,6 +101,57 @@ public class Utente {
 		return null;
 	}
 
+	
+
+	public void addTelefonoUtente(String num) {
+		TelefonoUtente tu = new TelefonoUtente(this, num);
+		this.getNumeriTelefono().add(tu);
+	}
+
+	
+
+	public void addIndirizzoSpedizione(String via, String cap) {
+		IndirizzoUtente i = new IndirizzoUtente(via, cap, this);
+		this.getIndirizzi().add(i);
+
+	}
+
+	public void addIndirizzoFatturazione(String via, String cap) {
+		IndirizzoUtente i = new IndirizzoUtente(via, cap, this);
+		i.cambiaIndirizzoType();
+		this.getIndirizzi().add(i);
+	}
+	
+	
+	// METODI SCANNER PER INTERFACCIA UTENTE 
+	
+	
+	public void addTelefonoUtenteScanner(Scanner scanner) {
+		{
+			System.out.println("digita il numero da aggiungere");
+			String num = scanner.nextLine();
+			System.out.println();
+			TelefonoUtente tu = new TelefonoUtente(this, num);
+			System.out.println("Puoi aggiungere nuovi numeri richiamando questo metodo!");
+			this.getNumeriTelefono().add(tu);
+		}
+	}
+	
+	
+	
+	public Utente(String nome, String cognome, Scanner scanner) {
+		super();
+		this.nome = nome;
+		this.cognome=cognome;
+		this.ruolo = RUOLO.AMMINISTRATORE_DI_SISTEMA;
+		System.out.println("aggiungi un numero di telefono");
+		addTelefonoUtenteScanner(scanner);
+		System.out.println("non scordarti di inserire un indirizzo tramite .addIndirizzi !!!");
+	}
+	
+	
+	
+	
 	public void creaOrdineScanner(Scanner scanner) {
 		System.out.println("creazione ordine in corso");
 		System.out.println("inserisci un nome al tuo ordine");
@@ -124,34 +167,7 @@ public class Utente {
 			System.out.println("ordine creato inserisci gli articoli tramite addArticoloOrdine");
 		}
 	}
-
-	public void addTelefonoUtente(String num) {
-		TelefonoUtente tu = new TelefonoUtente(this, num);
-		this.getNumeriTelefono().add(tu);
-	}
-
-	public void addTelefonoUtenteScanner(Scanner scanner) {
-		{
-			System.out.println("digita il numero da aggiungere");
-			String num = scanner.nextLine();
-			System.out.println();
-			TelefonoUtente tu = new TelefonoUtente(this, num);
-			System.out.println("Puoi aggiungere nuovi numeri richiamando questo metodo!");
-			this.getNumeriTelefono().add(tu);
-		}
-	}
-
-	public void addIndirizzoSpedizione(String via, String cap) {
-		IndirizzoUtente i = new IndirizzoUtente(via, cap, this);
-		this.getIndirizzi().add(i);
-
-	};
-
-	public void addIndirizzoFatturazione(String via, String cap) {
-		IndirizzoUtente i = new IndirizzoUtente(via, cap, this);
-		i.cambiaIndirizzoType();
-		this.getIndirizzi().add(i);
-	};
+	
 
 	public void addIndirizziScanner(Scanner scanner) {
 		System.out.println("Aggiungere indirizzo di spedizione");
