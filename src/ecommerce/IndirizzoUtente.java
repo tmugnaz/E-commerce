@@ -17,7 +17,7 @@ public class IndirizzoUtente {
 	
 	
 	public IndirizzoUtente() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 

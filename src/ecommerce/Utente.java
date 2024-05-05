@@ -14,16 +14,16 @@ public class Utente {
 	private RUOLO ruolo;
 	private List<Ordine> ordini = new ArrayList<Ordine>();
 
-	
-	public Utente(String nome,String cognome) {
+	public Utente(String nome, String cognome) {
 		this.nome = nome;
-		this.cognome=cognome;
+		this.cognome = cognome;
 		this.ruolo = RUOLO.AMMINISTRATORE_DI_SISTEMA;
 	}
+
 	public void infoIndirizzi() {
 		for (IndirizzoUtente indirizzoUtente : indirizzi) {
 			indirizzoUtente.info();
-			
+
 		}
 	}
 
@@ -32,28 +32,31 @@ public class Utente {
 			o.info();
 		}
 	}
+
 	public void info() {
-		System.out.println("Nome: "+this.getNome()+" Cognome: "+this.getCognome());
+		System.out.println("Nome: " + this.getNome() + " Cognome: " + this.getCognome());
 		System.out.println();
-		int tempo=1;
+		int tempo = 1;
 		for (IndirizzoUtente indirizzoUtente : indirizzi) {
-			
-			if(indirizzoUtente.getIndirizzotype()==INDIRIZZOTYPE.FATTURAZIONE) {
-				System.out.println("indirizzo Fatturazione: "+indirizzoUtente.getIndirizzoVia().concat(indirizzoUtente.getCAP()));
-				
-			}else {
-			System.out.println("indirizzo Spedizione: "+indirizzoUtente.getIndirizzoVia().concat(indirizzoUtente.getCAP()));
-			
-					}
-			
+
+			if (indirizzoUtente.getIndirizzotype() == INDIRIZZOTYPE.FATTURAZIONE) {
+				System.out.println("indirizzo Fatturazione: "
+						+ indirizzoUtente.getIndirizzoVia().concat(indirizzoUtente.getCAP()));
+
+			} else {
+				System.out.println(
+						"indirizzo Spedizione: " + indirizzoUtente.getIndirizzoVia().concat(indirizzoUtente.getCAP()));
+
+			}
+
 		}
 		int cont = 1;
 		System.out.println();
 		for (TelefonoUtente tf : numeriTelefono) {
-			System.out.println("numero telefono "+cont+" :"+tf.getNumeroTelefono());
+			System.out.println("numero telefono " + cont + " :" + tf.getNumeroTelefono());
 			cont++;
 		}
-		System.out.println("ruolo: "+this.getRuolo().name());
+		System.out.println("ruolo: " + this.getRuolo().name());
 	}
 
 	public void creaOrdine(String nomeOrdine, String modPagamento) {
@@ -61,20 +64,23 @@ public class Utente {
 		getOrdini().add(o);
 
 	}
+
 	public void pagaOrdine(String nomeOrdine) {
-		if (searchOrdineByName(nomeOrdine)!=null) {
+		if (searchOrdineByName(nomeOrdine) != null) {
 			searchOrdineByName(nomeOrdine).pagaOrdine();
 			searchOrdineByName(nomeOrdine).info();
 		}
 	}
+
 	public void spedisciOrdine(String nomeOrdine) {
-		if (this.getRuolo()!= RUOLO.CLIENTE && searchOrdineByName(nomeOrdine)!=null) {
+		if (this.getRuolo() != RUOLO.CLIENTE && searchOrdineByName(nomeOrdine) != null) {
 			searchOrdineByName(nomeOrdine).spedisciOrdine();
 			searchOrdineByName(nomeOrdine).info();
 		}
 	}
+
 	public void consegnaOrdine(String nomeOrdine) {
-		if (searchOrdineByName(nomeOrdine)!=null) {
+		if (searchOrdineByName(nomeOrdine) != null) {
 			searchOrdineByName(nomeOrdine).consegnaOrdine();
 			searchOrdineByName(nomeOrdine).info();
 		}
@@ -101,14 +107,10 @@ public class Utente {
 		return null;
 	}
 
-	
-
 	public void addTelefonoUtente(String num) {
 		TelefonoUtente tu = new TelefonoUtente(this, num);
 		this.getNumeriTelefono().add(tu);
 	}
-
-	
 
 	public void addIndirizzoSpedizione(String via, String cap) {
 		IndirizzoUtente i = new IndirizzoUtente(via, cap, this);
@@ -123,9 +125,14 @@ public class Utente {
 	}
 	
 	
-	// METODI SCANNER PER INTERFACCIA UTENTE 
-	
-	
+	public void cambiaRUOLO (Utente utente, RUOLO ruolo) {
+		if (this.ruolo.name()==RUOLO.AMMINISTRATORE_DI_SISTEMA.name()) {
+			utente.setRuolo(ruolo);
+		}return ;
+	}
+
+	// METODI SCANNER PER INTERFACCIA UTENTE
+
 	public void addTelefonoUtenteScanner(Scanner scanner) {
 		{
 			System.out.println("digita il numero da aggiungere");
@@ -136,22 +143,17 @@ public class Utente {
 			this.getNumeriTelefono().add(tu);
 		}
 	}
-	
-	
-	
+
 	public Utente(String nome, String cognome, Scanner scanner) {
 		super();
 		this.nome = nome;
-		this.cognome=cognome;
+		this.cognome = cognome;
 		this.ruolo = RUOLO.AMMINISTRATORE_DI_SISTEMA;
 		System.out.println("aggiungi un numero di telefono");
 		addTelefonoUtenteScanner(scanner);
 		System.out.println("non scordarti di inserire un indirizzo tramite .addIndirizzi !!!");
 	}
-	
-	
-	
-	
+
 	public void creaOrdineScanner(Scanner scanner) {
 		System.out.println("creazione ordine in corso");
 		System.out.println("inserisci un nome al tuo ordine");
@@ -167,7 +169,6 @@ public class Utente {
 			System.out.println("ordine creato inserisci gli articoli tramite addArticoloOrdine");
 		}
 	}
-	
 
 	public void addIndirizziScanner(Scanner scanner) {
 		System.out.println("Aggiungere indirizzo di spedizione");

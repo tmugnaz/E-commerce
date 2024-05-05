@@ -30,6 +30,8 @@ public class Ordine {
 	public Ordine(Utente utente , String nome, String modPagamento) {
 		this.nome=nome;
 		this.utente=utente;
+		this.addInitialModPagamento();
+		
 		this.pagamentoSelezionato= modPagamento;
 		setIndirizzi(utente);
 		this.stato= STATO.CREATO;
@@ -96,6 +98,18 @@ public class Ordine {
 	
 	public void addRigaOrdine( RigaOrdine rg ) {
 		this.righeOrdine.add(rg);
+	}
+	
+	public void checkModalit‡Pagamento(String candidato) {
+		for (String string : modalit‡Pagamento) {
+			if (candidato == string) {
+				this.setPagamentoSelezionato(candidato);
+			}else {
+				this.modalit‡Pagamento.add(candidato);
+				this.setPagamentoSelezionato(candidato);
+			}
+			
+		}
 	}
 	
 	// METODI SCANNER PER INTERFACCIA UTENTE, SCELTA DI METODO DI PAGAMENTO
